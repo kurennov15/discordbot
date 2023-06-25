@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
+const { SlashCommandBuilder, Message } = require('discord.js');
 const { ownerId } = require('../../config.json')
 
 module.exports = {
@@ -18,12 +18,16 @@ module.exports = {
             if (user.id != ownerId) {
                 return interaction.reply({
                     content: 'Только создатель имеет право баловаться этой командой',
-                    ephemeral: true
                 });
             }
 
-            interaction.reply({
+            interaction.channel.send({ 
                 content: text
-            });
+            }).then(() => {
+                interaction.reply({
+                    content: 'Сообщение отправлено',
+                    ephemeral: true
+                });
+            })
         }
 }
