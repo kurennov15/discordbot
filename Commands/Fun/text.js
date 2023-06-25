@@ -26,7 +26,7 @@ module.exports = {
             }).then(() => {
                 interaction.reply({
                     content: 'Сообщение отправлено',
-                    ephemeral: false
+                    ephemeral: true
                 });
             })
         }
