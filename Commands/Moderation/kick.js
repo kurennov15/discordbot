@@ -1,9 +1,10 @@
-const { SlashCommandBuilder, EmbedBuilder, Client } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('kick')
         .setDescription('Исключает пользователя из сервера')
+        .setDefaultMemberPermissions(PermissionFlagsBits.KickMembers)
         .addUserOption((option) =>
             option.setName('user')
                 .setDescription('Пользователь')
@@ -62,7 +63,7 @@ module.exports = {
                 .setColor('#cdd6f4')
                 .setDescription(`Пользователь "${user.username}" успешно исключен`)
                 .setFooter({
-                    text: `Вызвал: ${interaction.author.username}`,
+                    text: `Вызвал: ${interaction.user.username}`,
                     iconURL: user.displayAvatarURL({ dinamic: true, size: 4096 }),
                 })
                 .setTimestamp();
