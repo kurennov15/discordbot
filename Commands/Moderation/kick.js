@@ -1,12 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits } = require('discord.js');
-=======
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
->>>>>>> 5984783 (main)
-=======
 const { SlashCommandBuilder, EmbedBuilder, Client } = require('discord.js');
->>>>>>> d570a12 (main)
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -22,11 +14,7 @@ module.exports = {
                 .setRequired(true)
         ),
 
-<<<<<<< HEAD
-        async execute(interaction, client) {
-=======
         async execute(interaction) {
->>>>>>> 5984783 (main)
             const user = interaction.options.getUser('user') || interaction.guild.members.cache.get(args[0]);
             const member = interaction.guild.members.cache.get(user.id);
 
@@ -55,17 +43,12 @@ module.exports = {
                 });
             }
 
-<<<<<<< HEAD
-            if (member.id === client.user.id) {
-=======
             /* if (member.id === client.id) {
->>>>>>> d570a12 (main)
                 return interaction.reply({
                     content: 'Бот не может исключить самого себя...',
                     ephemeral: true
                 });
-<<<<<<< HEAD
-            }
+            } */
 
             const embedError = new EmbedBuilder()
                 .setColor('#cdd6f4')
@@ -113,7 +96,6 @@ module.exports = {
                 .setDescription(`Пользователь "${user.username}" успешно исключен`)
                 .setFooter({
                     text: `Вызвал: ${interaction.author.username}`,
->>>>>>> 5984783 (main)
                     iconURL: user.displayAvatarURL({ dinamic: true, size: 4096 }),
                 })
                 .setTimestamp();
