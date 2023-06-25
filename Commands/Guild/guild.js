@@ -16,7 +16,7 @@ module.exports = {
             const guildTimestamp = `<t:${Math.floor(guildCreatedAt.getTime() / 1000)}:F>`;
 
             const embed = new EmbedBuilder()
-                .setColor('#2B2D31')
+                .setColor('#cdd6f4')
                 .setFooter({ text: `Аватар сервера: ${guild.name}` })
                 .setImage(`${guild.iconURL({ dinamic: true, size: 4096 })}`)
                 .setAuthor({ name: `${guild.name}`, iconURL: `${guild.iconURL({ dinamic: true, size: 4096 })}` })

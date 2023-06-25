@@ -12,7 +12,7 @@ module.exports = {
     let userAvatar = user.displayAvatarURL({ dinamic: true, size: 4096 })
 
     const embed = new EmbedBuilder()
-      .setColor('#2B2D31')
+      .setColor('#cdd6f4')
       .setFooter({ text: `Аватар пользователя: ${user.username}`})
       .setImage(`${userAvatar}`)
 
