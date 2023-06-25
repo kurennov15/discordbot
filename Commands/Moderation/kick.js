@@ -1,17 +1,28 @@
+<<<<<<< HEAD
 const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits } = require('discord.js');
+=======
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+>>>>>>> 5984783 (main)
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('kick')
         .setDescription('Исключает пользователя из сервера')
+<<<<<<< HEAD
         .setDefaultMemberPermissions(PermissionFlagsBits.KickMembers)
+=======
+>>>>>>> 5984783 (main)
         .addUserOption((option) =>
             option.setName('user')
                 .setDescription('Пользователь')
                 .setRequired(true)
         ),
 
+<<<<<<< HEAD
         async execute(interaction, client) {
+=======
+        async execute(interaction) {
+>>>>>>> 5984783 (main)
             const user = interaction.options.getUser('user') || interaction.guild.members.cache.get(args[0]);
             const member = interaction.guild.members.cache.get(user.id);
 
@@ -29,6 +40,7 @@ module.exports = {
                 });
             }
 
+<<<<<<< HEAD
             if (member.id === interaction.guild.ownerId) {
                 return interaction.reply({
                     content: 'Исключить овнера? Гений...',
@@ -48,6 +60,13 @@ module.exports = {
                 .setDescription(`Невозможно исключить пользователя "${user.username}", так как его роль выше вашей`)
                 .setFooter({
                     text: `Вызвал: ${interaction.user.username}`,
+=======
+            const embedError = new EmbedBuilder()
+                .setColor('#2B2D31')
+                .setDescription(`Невозможно исключить пользователя "${user.username}", так как его роль выше вашей`)
+                .setFooter({
+                    text: `Вызвал: ${interaction.author.username}`,
+>>>>>>> 5984783 (main)
                     iconURL: user.displayAvatarURL({ dinamic: true, size: 4096 }),
                 })
                 .setTimestamp();
@@ -60,10 +79,17 @@ module.exports = {
             }
 
             const embedSucess = new EmbedBuilder()
+<<<<<<< HEAD
                 .setColor('#cdd6f4')
                 .setDescription(`Пользователь "${user.username}" успешно исключен`)
                 .setFooter({
                     text: `Вызвал: ${interaction.user.username}`,
+=======
+                .setColor('#2B2D31')
+                .setDescription(`Пользователь "${user.username}" успешно исключен`)
+                .setFooter({
+                    text: `Вызвал: ${interaction.author.username}`,
+>>>>>>> 5984783 (main)
                     iconURL: user.displayAvatarURL({ dinamic: true, size: 4096 }),
                 })
                 .setTimestamp();
