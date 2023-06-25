@@ -35,7 +35,7 @@ module.exports = {
                 });
             }
 
-            if (member.id === client.id) {
+            if (member.id === client.user.id) {
                 return interaction.reply({
                     content: 'Бот не может исключить самого себя...',
                     ephemeral: true
