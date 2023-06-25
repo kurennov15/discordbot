@@ -31,7 +31,7 @@ module.exports = {
             });
 
             const embed = new EmbedBuilder()
-                .setColor('#2B2D31')
+                .setColor('#cdd6f4')
 
             if (user) {
                 let i = 0;
