@@ -12,5 +12,9 @@ module.exports = {
         const ping = reply.createdTimestamp - interaction.createdTimestamp;
 
         await interaction.editReply({ content: `Клиент: ${ping}ms | Вебсокет: ${client.ws.ping}ms` });
+
+        setTimeout(() => {
+            interaction.deleteReply();
+        }, 5000);
     }
 }
