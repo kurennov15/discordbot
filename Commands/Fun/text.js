@@ -12,7 +12,7 @@ module.exports = {
         ),
 
         async execute(interaction, client) {
-            let user = interaction.user;
+            /*let user = interaction.user;
             const text = interaction.options.getString('text');
 
             if (user.id != ownerId) {
@@ -28,6 +28,6 @@ module.exports = {
                     content: 'Сообщение отправлено',
                     ephemeral: true
                 });
-            })
+            })*/
         }
-}
+    }
