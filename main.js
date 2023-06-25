@@ -14,7 +14,6 @@ client.commands = new Collection();
 
 const { loadEvents } = require('./Handlers/eventHandler');
 const { loadCommands } = require('./Handlers/commandHandler');
-
 client.login(token).then(() => {
     loadEvents(client);
     loadCommands(client);
