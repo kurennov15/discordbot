@@ -4,13 +4,6 @@ module.exports = {
   name: "ready",
   once: true,
   execute(client) {
-    client.user.setPresence({
-      activity: {
-        name: "Клиент",
-        type: ActivityType.Watching,
-      },
-    });
-    
     const twoWeeksAgo = Date.now() - 14 * 24 * 60 * 60 * 1000;
     client.guilds.cache.forEach((guild) => {
       guild.channels.cache
@@ -26,6 +19,13 @@ module.exports = {
             .catch(console.error);
         });
     });
-    console.log(`Клиент ${client.user.tag} запущен!`);
+    client.user.setPresence({
+      activity: {
+          name: `with ${client.commands.size} commands`,
+          type: ActivityType.Watching,
+      },
+  })
+
+  console.log(`Клиент ${client.user.tag} запущен!`);
   },
 };

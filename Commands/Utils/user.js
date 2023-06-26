@@ -34,13 +34,13 @@ module.exports = {
             let deviceName = '';
             switch (device) {
                 case 'desktop':
-                    deviceName = 'Компьютер';
+                    deviceName = '<:computer:1122828068533313599> Компьютер';
                     break;
                 case 'mobile':
-                    deviceName = 'Телефон';
+                    deviceName = '<:phone:1122828071695818813> Телефон';
                     break;
                 case 'web':
-                    deviceName = 'Веб';
+                    deviceName = '<:web:1122828073130283078> Веб';
                     break;
                 default: 
                     deviceName = 'Не в сети';

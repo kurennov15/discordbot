@@ -11,9 +11,9 @@
   "dependencies": {
     "@napi-rs/canvas": "^0.1.41",
     "ascii-table": "^0.0.9",
-    "axios": "^1.4.0",
+    "cpu-stat": "^2.0.1",
     "discord.js": "^14.11.0",
-    "mysql": "^2.18.1",
+    "format-bytes": "^1.0.1",
     "nodemon": "^2.0.22",
     "sqlite3": "^5.1.6"
   }

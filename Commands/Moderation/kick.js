@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, PermissionsBitField } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -8,42 +8,66 @@ module.exports = {
             option.setName('user')
                 .setDescription('Пользователь')
                 .setRequired(true)
+        )
+        .addStringOption((option) =>
+            option.setName('reason')
+                .setDescription('Причина, по которой пользователь будет исключен')
+                .setRequired(false)
         ),
 
-        async execute(interaction) {
+        async execute(interaction, client) {
             const user = interaction.options.getUser('user') || interaction.guild.members.cache.get(args[0]);
             const member = interaction.guild.members.cache.get(user.id);
+            const reason = interaction.options.getString('reason');
 
-            if (!member) {
-                return interaction.reply({ 
-                    content: 'Пользователь не найден',
+            if (!interaction.member.permissions.has(PermissionsBitField.Flags.KickMembers)) {
+                return interaction.reply({
+                    content: 'Недостаточно прав',
                     ephemeral: true
                 });
             }
 
-            if (member.id === interaction.user.id) {
+            if (!reason) {
+                const embedSucess = new EmbedBuilder()
+                    .setColor('#a6e3a1')
+                    .setDescription(`Пользователь "${user.username}" успешно исключен без указанной причины`)
+                    .setFooter({
+                        text: `Вызвал: ${interaction.user.username}`,
+                        iconURL: user.displayAvatarURL({ dinamic: true, size: 4096 }),
+                    })
+                    .setTimestamp();
+                
                 return interaction.reply({
-                    content: 'Намерился исключить самого себя? Смельчак...',
-                    ephemeral: true
-                });
-            }
-
-            if (member.id === interaction.guild.ownerId) {
+                    embeds: [embedSucess],
+                    ephemeral: false
+                })
+            } else if (reason) {
+                const embedSucess = new EmbedBuilder()
+                    .setColor('#a6e3a1')
+                    .setDescription(`Пользователь "${user.username}" успешно исключен по причине "${reason}"`)
+                    .setFooter({
+                        text: `Вызвал: ${interaction.user.username}`,
+                        iconURL: user.displayAvatarURL({ dinamic: true, size: 4096 }),
+                    })
+                    .setTimestamp();         
+                    
                 return interaction.reply({
-                    content: 'Исключить овнера? Гений...',
-                    ephemeral: true
-                });
-            }
-
-            if (member.id === client.user.id) {
-                return interaction.reply({
-                    content: 'Бот не может исключить самого себя...',
-                    ephemeral: true
-                });
+                    embeds: [embedSucess],
+                    ephemeral: false
+                })
+            } else if (member.id === client.user.id) {
+                const embedError = new EmbedBuilder()
+                    .setColor('#f38ba8')
+                    .setDescription(`Невозможно исключить бота...`)
+                    .setFooter({
+                        text: `Вызвал: ${interaction.user.username}`,
+                        iconURL: user.displayAvatarURL({ dinamic: true, size: 4096 }),
+                    })
+                    .setTimestamp();
             }
 
             const embedError = new EmbedBuilder()
-                .setColor('#cdd6f4')
+                .setColor('#f38ba8')
                 .setDescription(`Невозможно исключить пользователя "${user.username}", так как его роль выше вашей`)
                 .setFooter({
                     text: `Вызвал: ${interaction.user.username}`,
@@ -59,7 +83,7 @@ module.exports = {
             }
 
             const embedSucess = new EmbedBuilder()
-                .setColor('#cdd6f4')
+                .setColor('#a6e3a1')
                 .setDescription(`Пользователь "${user.username}" успешно исключен`)
                 .setFooter({
                     text: `Вызвал: ${interaction.author.username}`,
