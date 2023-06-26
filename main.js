@@ -16,12 +16,7 @@ const { loadEvents } = require('./Handlers/eventHandler');
 const { loadCommands } = require('./Handlers/commandHandler');
 
 client.login(token).then(() => {
-    client.user.setPresence({
-        activity: {
-            name: `with ${client.commands.size} commands`,
-            type: ActivityType.Watching,
-        },
-    })
+    client.user.setPresence({ activities: [{ name: "kurya", type: ActivityType.Listening }], status: 'online' });
 
     loadEvents(client);
     loadCommands(client);

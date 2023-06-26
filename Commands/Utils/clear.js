@@ -12,7 +12,7 @@ module.exports = {
                 .setDescription('Количество сообщений')
                 .setRequired(true)
                 .setMinValue(1)
-                .setMaxValue(50)
+                .setMaxValue(100)
         )
         .addUserOption(option =>
             option.setName('user')

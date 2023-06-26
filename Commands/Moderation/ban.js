@@ -27,27 +27,6 @@ module.exports = {
             });
         }
 
-        if (member.id === interaction.user.id) {
-            return interaction.reply({
-                content: 'Намерился забанить самого себя? Смельчак...',
-                ephemeral: true
-            });
-        }
-
-        if (member.id === interaction.guild.ownerId) {
-            return interaction.reply({
-                content: 'Забанить овнера? Гений...',
-                ephemeral: true
-            });
-        }
-
-        if (member.id === client.user.id) {
-            return interaction.reply({
-                content: 'Бот не может забанить самого себя...',
-                ephemeral: true
-            });
-        }
-
         if (!reason) {
             const embedSucess = new EmbedBuilder()
                 .setColor('#a6e3a1')
